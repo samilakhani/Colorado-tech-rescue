@@ -1,0 +1,341 @@
+/* ==========================================================================
+   Colorado Tech Rescue — Design Tokens
+   Palette, type, and layout primitives shared across the whole site.
+   ========================================================================== */
+
+:root {
+  /* Color: pulled from the actual wolf/circuit brand mark, not a generic dark theme */
+  --ctr-black: #0b0e0c;        /* primary dark background, green-tinted black */
+  --ctr-panel: #12160f;        /* panel / card surface on dark sections */
+  --ctr-panel-raised: #171c14; /* slightly raised panel */
+  --ctr-line: #263021;         /* hairline borders on dark surfaces */
+  --ctr-green: #74b53a;        /* signature brand green (from logo circuitry) */
+  --ctr-green-bright: #a4e05b; /* hover / active accent */
+  --ctr-green-dim: #3c4f2d;    /* muted green for subtle traces */
+  --ctr-white: #f4f6f1;        /* off-white for text on dark */
+  --ctr-ink: #12160f;          /* body text on light backgrounds */
+  --ctr-slate: #8b9686;        /* muted secondary text on dark */
+  --ctr-slate-ink: #5b6558;    /* muted secondary text on light */
+  --ctr-cream: #f4f6f1;        /* light section background */
+  --ctr-cream-panel: #ffffff;  /* card surface on light sections */
+  --ctr-flag-red: #b8483c;     /* Colorado flag red, used sparingly */
+  --ctr-flag-gold: #d6a23e;    /* Colorado flag gold, used sparingly */
+
+  --font-display: "Rajdhani", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --container-max: 1180px;
+
+  --shadow-panel: 0 18px 40px -22px rgba(0, 0, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--ctr-cream);
+  color: var(--ctr-ink);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0 0 0.5em 0;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1em 0;
+  max-width: 66ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 84px 0;
+}
+
+.section--tight {
+  padding: 56px 0;
+}
+
+.section--dark {
+  background: var(--ctr-black);
+  color: var(--ctr-white);
+}
+
+.section--dark p {
+  color: var(--ctr-slate);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ctr-green);
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ctr-green);
+  box-shadow: 0 0 0 3px var(--ctr-green-dim);
+}
+
+.section--dark .eyebrow::before {
+  box-shadow: 0 0 0 3px rgba(116, 181, 58, 0.25);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 42px;
+}
+
+.section-head p {
+  color: var(--ctr-slate-ink);
+}
+
+.section--dark .section-head p {
+  color: var(--ctr-slate);
+}
+
+/* Buttons ------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--ctr-green);
+  color: #0b0e0c;
+}
+
+.btn-primary:hover {
+  background: var(--ctr-green-bright);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--ctr-line);
+  color: var(--ctr-white);
+}
+
+.section:not(.section--dark) .btn-outline {
+  border-color: #d7ddd2;
+  color: var(--ctr-ink);
+}
+
+.btn-outline:hover {
+  border-color: var(--ctr-green);
+  color: var(--ctr-green);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Beveled "circuit" panel — the site's signature card treatment.
+   A clipped corner + thin trace line stands in for the generic
+   rounded-corner / soft-shadow card. */
+.panel {
+  position: relative;
+  background: var(--ctr-panel);
+  border: 1px solid var(--ctr-line);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+  padding: 28px;
+}
+
+.section:not(.section--dark) .panel {
+  background: var(--ctr-cream-panel);
+  border-color: #e1e7db;
+}
+
+.panel::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  border-top: 1.5px solid var(--ctr-green-dim);
+  border-left: none;
+  transform: rotate(0deg);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: transparent;
+  border-bottom: 1.5px solid var(--ctr-green);
+  border-right: 1.5px solid var(--ctr-green);
+}
+
+.panel--hover {
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.panel--hover:hover {
+  border-color: var(--ctr-green-dim);
+  transform: translateY(-3px);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: 1px solid var(--ctr-green-dim);
+  color: var(--ctr-green);
+  border-radius: 999px;
+  background: rgba(116, 181, 58, 0.08);
+}
+
+/* Mountain ridge divider — a literal echo of the brand's mountain mark,
+   used to seam dark and light sections instead of a generic wave/blob. */
+.ridge-divider {
+  display: block;
+  width: 100%;
+  height: 46px;
+  margin-bottom: -1px;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 920px) {
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 0;
+  }
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ctr-green);
+  outline-offset: 2px;
+}

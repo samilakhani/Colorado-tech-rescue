@@ -1,0 +1,50 @@
+.contact-band {
+  background: var(--ctr-green);
+  color: #0b0e0c;
+}
+
+.contact-band__inner {
+  padding: 56px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.contact-band h2 {
+  color: #0b0e0c;
+  margin-bottom: 6px;
+}
+
+.contact-band p {
+  color: #1c2717;
+  margin: 0;
+  max-width: 46ch;
+}
+
+.contact-band__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.contact-band .btn-outline {
+  border-color: #0b0e0c;
+  color: #0b0e0c;
+}
+
+.contact-band .btn-outline:hover {
+  background: #0b0e0c;
+  color: var(--ctr-green);
+  border-color: #0b0e0c;
+}
+
+.contact-band .btn-primary {
+  background: #0b0e0c;
+  color: var(--ctr-green);
+}
+
+.contact-band .btn-primary:hover {
+  background: #171c14;
+}

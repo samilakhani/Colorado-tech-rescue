@@ -1,0 +1,50 @@
+.service-card h3 {
+  margin-bottom: 10px;
+}
+
+.service-card__list {
+  margin: 16px 0;
+  display: grid;
+  gap: 8px;
+}
+
+.service-card__list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.94rem;
+  color: var(--ctr-slate-ink);
+}
+
+.section--dark .service-card__list li {
+  color: var(--ctr-slate);
+}
+
+.service-card__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  background: var(--ctr-green);
+}
+
+.service-card__note {
+  font-size: 0.86rem;
+  font-style: italic;
+  color: var(--ctr-slate-ink);
+}
+
+.service-card__link {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--ctr-green);
+  border-bottom: 1px solid var(--ctr-green-dim);
+  padding-bottom: 2px;
+}
+
+.service-card__link:hover {
+  color: var(--ctr-green-bright);
+  border-color: var(--ctr-green-bright);
+}

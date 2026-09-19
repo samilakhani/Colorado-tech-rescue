@@ -1,0 +1,28 @@
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.gallery-filters__btn {
+  padding: 8px 16px;
+  border: 1px solid #d7ddd2;
+  background: transparent;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ctr-slate-ink);
+  transition: all 0.15s ease;
+}
+
+.gallery-filters__btn:hover {
+  border-color: var(--ctr-green);
+  color: var(--ctr-green);
+}
+
+.gallery-filters__btn.is-active {
+  background: var(--ctr-green);
+  border-color: var(--ctr-green);
+  color: #0b0e0c;
+}

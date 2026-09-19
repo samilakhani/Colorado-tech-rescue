@@ -1,0 +1,20 @@
+.page-hero {
+  background: var(--ctr-black);
+  color: var(--ctr-white);
+  padding: 64px 0 0;
+  position: relative;
+}
+
+.page-hero .container {
+  padding-bottom: 56px;
+}
+
+.page-hero h1 {
+  max-width: 20ch;
+}
+
+.page-hero p {
+  color: var(--ctr-slate);
+  font-size: 1.08rem;
+  max-width: 58ch;
+}

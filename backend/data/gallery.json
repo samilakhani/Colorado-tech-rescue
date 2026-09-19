@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "id": 1, "category": "Laptop Repair", "title": "Screen replacement, cracked panel", "beforeAfter": true },
+    { "id": 2, "category": "Custom PC Builds", "title": "Ryzen 7 gaming build with RGB loop", "beforeAfter": false },
+    { "id": 3, "category": "Desktop Repair", "title": "No-power diagnosis and PSU swap", "beforeAfter": false },
+    { "id": 4, "category": "Upgrades", "title": "HDD to NVMe SSD upgrade", "beforeAfter": true },
+    { "id": 5, "category": "Phone & Tablet", "title": "iPad screen and battery replacement", "beforeAfter": true },
+    { "id": 6, "category": "Cleaning & Thermal", "title": "Deep clean and repaste, gaming laptop", "beforeAfter": true }
+  ]
+}

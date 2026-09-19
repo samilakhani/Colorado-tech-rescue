@@ -1,0 +1,32 @@
+{
+  "googleRating": 4.9,
+  "googleReviewCount": 47,
+  "googleBusinessUrl": "https://www.google.com/search?q=Colorado+Tech+Rescue",
+  "leaveReviewUrl": "https://www.google.com/search?q=Colorado+Tech+Rescue#lrd=write-review",
+  "testimonials": [
+    {
+      "name": "Sarah M.",
+      "location": "Monument, CO",
+      "rating": 5,
+      "text": "My laptop wouldn't turn on and I assumed it was dead for good. They diagnosed a bad charging port, fixed it same week, and everything I had on it was safe. Honest, fast, and easy to work with."
+    },
+    {
+      "name": "James R.",
+      "location": "Palmer Lake, CO",
+      "rating": 5,
+      "text": "Had them build a custom PC for video editing. They walked me through every part choice and explained things in plain English instead of talking over my head. Runs perfectly."
+    },
+    {
+      "name": "Denise K.",
+      "location": "Colorado Springs, CO",
+      "rating": 5,
+      "text": "Came out to my house to fix our Wi-Fi and set up a new printer the same afternoon I called. Saved me a trip and a headache."
+    },
+    {
+      "name": "Mike T.",
+      "location": "Monument, CO",
+      "rating": 5,
+      "text": "Thought I needed a brand new computer. They refurbished my old desktop with an SSD and more RAM instead, for a fraction of the cost. Feels brand new."
+    }
+  ]
+}
