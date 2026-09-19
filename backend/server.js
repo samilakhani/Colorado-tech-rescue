@@ -7,6 +7,11 @@ const contentRoutes = require("./routes/contentRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Render (and most hosts) sit behind a reverse proxy. This tells Express to
+// trust the proxy's headers so tools like express-rate-limit can correctly
+// identify visitors instead of throwing a validation error.
+app.set("trust proxy", 1);
+
 // Allow only known origins in production; allow everything if not configured (local dev convenience)
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
