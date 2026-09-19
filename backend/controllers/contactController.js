@@ -1,18 +1,8 @@
-const nodemailer = require("nodemailer");
 
-// Reusable transporter using Gmail SMTP + an App Password.
-// See backend/.env.example for setup instructions.
-function buildTransporter() {
-  return nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // upgrades the connection via STARTTLS instead of using SSL directly
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
-}
+// Sends the contact/appointment request via the Resend API (https://resend.com)
+// over plain HTTPS. We switched away from Nodemailer + Gmail SMTP because
+// many hosts (including Render's free tier) block outbound SMTP connections
+// entirely — HTTPS is never blocked, so this is the reliable option.
 
 function escapeHtml(str = "") {
   return String(str)
@@ -63,18 +53,16 @@ async function submitContactRequest(req, res) {
       deviceType,
       manufacturerModel,
       problemDescription,
-      serviceLocation, // "In-Shop Drop-Off" or "In-Home Service"
+      serviceLocation,
       preferredDate,
       preferredTime,
       message,
-      // Optional photo, sent from the browser as a base64 data URL
       photoBase64,
       photoFileName,
       // Honeypot field: real users never fill this in. Bots often do.
       website,
     } = req.body;
 
-    // Silently "succeed" for bots without sending an email
     if (website) {
       return res.status(200).json({ success: true });
     }
@@ -102,28 +90,40 @@ async function submitContactRequest(req, res) {
       { label: "Additional Message", value: message },
     ];
 
-    const transporter = buildTransporter();
+    const emailPayload = {
+      from: process.env.RESEND_FROM || "Colorado Tech Rescue <onboarding@resend.dev>",
+      to: [businessEmail],
+      reply_to: email,
+      subject: `New Service Request from ${name}${serviceType ? " — " + serviceType : ""}`,
+      html: buildEmailHtml(fields),
+    };
 
-    const attachments = [];
+    // Optional photo, sent from the browser as a base64 data URL
     if (photoBase64 && typeof photoBase64 === "string" && photoBase64.startsWith("data:")) {
       const matches = photoBase64.match(/^data:(.+);base64,(.*)$/);
       if (matches) {
-        attachments.push({
-          filename: photoFileName || "photo.jpg",
-          content: Buffer.from(matches[2], "base64"),
-          contentType: matches[1],
-        });
+        emailPayload.attachments = [
+          {
+            filename: photoFileName || "photo.jpg",
+            content: matches[2],
+          },
+        ];
       }
     }
 
-    await transporter.sendMail({
-      from: `"Colorado Tech Rescue Website" <${process.env.GMAIL_USER}>`,
-      to: businessEmail,
-      replyTo: email,
-      subject: `New Service Request from ${name}${serviceType ? " — " + serviceType : ""}`,
-      html: buildEmailHtml(fields),
-      attachments,
+    const resendRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(emailPayload),
     });
+
+    if (!resendRes.ok) {
+      const errorBody = await resendRes.text();
+      throw new Error(`Resend API error (${resendRes.status}): ${errorBody}`);
+    }
 
     return res.status(200).json({
       success: true,
