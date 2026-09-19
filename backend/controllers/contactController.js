@@ -4,7 +4,9 @@ const nodemailer = require("nodemailer");
 // See backend/.env.example for setup instructions.
 function buildTransporter() {
   return nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // upgrades the connection via STARTTLS instead of using SSL directly
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_APP_PASSWORD,
